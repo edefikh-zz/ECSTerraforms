@@ -1,6 +1,0 @@
-#!/bin/bash
-
-yum update -y  && yum install nginx -y 
-sed -i -e 's/Welcome to.*/Hello, world<\/strong>/g' /usr/share/nginx/html/index.html
-service nginx start
-
