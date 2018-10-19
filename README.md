@@ -37,13 +37,17 @@ Autoscaling group
 Autoscale group capacity by default - 2 EC2 instances, could be increased by variable 'asg_ec2_desired'.
 Min and max cluster's capacity also could be set by 'asg_ec2_min' and 'asg_ec2_max' variables.
 
-EC2 instances scale up and down according Lambda's commands. It's better described here: https://garbe.io/blog/2017/04/12/a-better-solution-to-ecs-autoscaling/
- Special bash script which runs at UserData provides unique hostnames and name tags for each EC2. Those hostnames has {var.app_name}-{var.environment}-number_in_cluster structure, for example
+EC2 instances scale up and down according Lambda's commands.
+ 
+Special bash script which runs at UserData provides unique hostnames and name tags for each EC2. Those hostnames has {var.app_name}-{var.environment}-number_in_cluster structure, for example
  app-production-001, nginx-stage-004 etc. This script require S3 bucket to store file with all used hostnames.
- Also each instance has configured SumoLogic and NewRelic agents. Their license keys should be set accordingly. You could check Sumologic config at UserData file.
- Each instance could be accessed by IAM Users SSHkeys. To use this feature you should set required IAM users list at variable 'iam_users_for_ec2_ssh'. This users should have uploaded public keys.
+ 
+Also each instance has configured SumoLogic and NewRelic agents. Their license keys should be set accordingly. You could check Sumologic config at UserData file.
+ 
+Each instance could be accessed by IAM Users SSHkeys. To use this feature you should set required IAM users list at variable 'iam_users_for_ec2_ssh'. This users should have uploaded public keys.
 
 RDS instance
   Template creates RDS instance of desired type at private VPC. You could choose to use PostgreSQL or MySQL.
+
 Also provide checks of username/DB or instance names. For example DB name couldn't have "-", so template will replace it with "_"
 By default RDS SG allows only cluster's EC2 to have access to RDS.
