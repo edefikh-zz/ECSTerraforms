@@ -1,0 +1,16 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "ecs:DeregisterContainerInstance",
+                "ecs:RegisterContainerInstance",
+                "ecs:SubmitContainerStateChange",
+                "ecs:SubmitTaskStateChange",
+                "ecs:ListContainerInstances"
+            ],
+            "Resource": "arn:aws:ecs:${aws_region}:${accountid}:cluster/${app_name}-${environment}",
+            "Effect": "Allow"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Condition": {
+                "StringEquals": {
+                    "ecs:cluster": "arn:aws:ecs:${aws_region}:${accountid}:cluster/${app_name}-${environment}"
+                }
+            },
+            "Action": [
+                "ecs:Poll",
+                "ecs:StartTelemetrySession",
+                "ecs:UpdateContainerInstancesState",
+                "ecs:ListTasks",
+                "ecs:DescribeContainerInstances"
+            ],
+            "Resource": "arn:aws:ecs:${aws_region}:${accountid}:container-instance/*",
+            "Effect": "Allow"
+        }
+    ]
+}
